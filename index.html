@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adarsh Patil - Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Courier+Prime:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --text-light: #f5f5f5;
+            --accent: #00d4ff;
+            --border: #2a2a2a;
+            --text-secondary: #a0a0a0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            border-bottom: 3px solid var(--border);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 8vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+            line-height: 1.1;
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+
+        .hero-tagline {
+            font-size: 14px;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            font-family: 'Courier Prime', monospace;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent);
+            color: var(--bg-dark);
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0 rgba(0, 212, 255, 0.3);
+        }
+
+        /* ===== SECTION STYLES ===== */
+        section {
+            padding: 80px 40px;
+            border-bottom: 3px solid var(--border);
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 20px;
+            }
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .section-number {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 100px;
+            font-weight: 700;
+            color: var(--border);
+            line-height: 1;
+            z-index: 0;
+        }
+
+        .section-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        #about .section-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            #about .section-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .about-highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .about-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .meta-block {
+            padding: 20px;
+            border: 2px solid var(--border);
+            border-radius: 2px;
+        }
+
+        .meta-label {
+            font-size: 11px;
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .meta-content {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* ===== SKILLS SECTION ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-pill {
+            padding: 12px 20px;
+            border: 2px solid var(--accent);
+            border-radius: 2px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-pill:hover {
+            background-color: var(--accent);
+            color: var(--bg-dark);
+            transform: scale(1.05);
+        }
+
+        /* ===== PROJECTS SECTION ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            border: 2px solid var(--border);
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translate(-4px, -4px);
+            box-shadow: 4px 4px 0 rgba(0, 212, 255, 0.2);
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .project-badge {
+            font-size: 11px;
+            padding: 4px 12px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .project-status {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .project-desc {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            font-size: 11px;
+            background-color: rgba(0, 212, 255, 0.1);
+            padding: 4px 10px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* ===== EXPERIENCES SECTION ===== */
+        .experience-item {
+            padding: 25px;
+            border-left: 3px solid var(--accent);
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 35px;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            background-color: var(--accent);
+            border-radius: 0;
+        }
+
+        .exp-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .exp-company {
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .exp-date {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .exp-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ===== EDUCATION SECTION ===== */
+        .education-item {
+            padding: 25px;
+            border: 2px solid var(--border);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            border-color: var(--accent);
+            background-color: rgba(0, 212, 255, 0.05);
+        }
+
+        .edu-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .edu-school {
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .edu-year {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .edu-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        #contact {
+            text-align: center;
+            padding: 100px 40px;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-intro {
+            font-size: 16px;
+            margin-bottom: 50px;
+            line-height: 1.8;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .contact-link {
+            display: inline-block;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-light);
+            text-decoration: none;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--accent);
+            transform: translate(5px, -5px);
+        }
+
+        .contact-socials {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 1px solid var(--accent);
+            padding: 10px 20px;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+            background-color: rgba(0, 212, 255, 0.1);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 30px 40px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-secondary);
+            border-top: 2px solid var(--border);
+            letter-spacing: 1px;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .section-number {
+                font-size: 60px;
+                top: 20px;
+                right: 20px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                gap: 20px;
+            }
+
+            .contact-link {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-label">Welcome to</div>
+            <h1 class="hero-title">ADARSH PATIL</h1>
+            <p class="hero-tagline">First-Year B.Tech CS | AI/ML Enthusiast | KIT Bangalore</p>
+            <a href="#projects" class="cta-button">See My Work</a>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="section-label">01 — About</div>
+        <div class="section-number">01</div>
+        <div class="section-content">
+            <div class="about-text">
+                <p>I'm a first-year B.Tech Computer Science student at KIT Bangalore, passionate about building elegant solutions to complex problems.</p>
+                <p>My focus areas include <span class="about-highlight">Artificial Intelligence</span>, <span class="about-highlight">Machine Learning</span>, and full-stack web development. I believe in writing clean, maintainable code and creating products that solve real-world problems.</p>
+                <p>Currently, I'm exploring AI applications, contributing to ML projects at KIT's ML Research Lab, and diving deep into modern web technologies.</p>
+                <p>When I'm not coding, you'll find me experimenting with new tech, writing about AI/ML concepts, or collaborating with peers on innovative projects.</p>
+            </div>
+            <div class="about-meta">
+                <div class="meta-block">
+                    <div class="meta-label">Specialization</div>
+                    <div class="meta-content">Artificial Intelligence & Machine Learning</div>
+                </div>
+                <div class="meta-block">
+                    <div class="meta-label">Education</div>
+                    <div class="meta-content">B.Tech Computer Science, KIT Bangalore</div>
+                </div>
+                <div class="meta-block">
+                    <div class="meta-label">Currently</div>
+                    <div class="meta-content">ML@KIT Member, Open Source Contributor</div>
+                </div>
+                <div class="meta-block">
+                    <div class="meta-label">Location</div>
+                    <div class="meta-content">Bangalore, India</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills">
+        <div class="section-label">02 — Skills</div>
+        <div class="section-number">02</div>
+        <div class="section-content">
+            <div class="skills-grid">
+                <div class="skill-pill">Python</div>
+                <div class="skill-pill">JavaScript</div>
+                <div class="skill-pill">React</div>
+                <div class="skill-pill">Node.js</div>
+                <div class="skill-pill">Machine Learning</div>
+                <div class="skill-pill">TensorFlow</div>
+                <div class="skill-pill">Data Analysis</div>
+                <div class="skill-pill">HTML/CSS</div>
+                <div class="skill-pill">MongoDB</div>
+                <div class="skill-pill">Git</div>
+                <div class="skill-pill">AI/ML</div>
+                <div class="skill-pill">Problem Solving</div>
+                <div class="skill-pill">Communication</div>
+                <div class="skill-pill">Leadership</div>
+                <div class="skill-pill">Critical Thinking</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+        <div class="section-label">03 — Projects</div>
+        <div class="section-number">03</div>
+        <div class="section-content">
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">AI/WEB BUILD</div>
+                        <div class="project-badge">IN PROGRESS</div>
+                    </div>
+                    <div class="project-status">Active Development</div>
+                    <p class="project-desc">Building an AI-driven web platform for solving real-world problems with a focus on user experience and technical excellence. Full-stack solution combining modern web technologies with machine learning capabilities.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">React</span>
+                        <span class="tag">AI/ML</span>
+                        <span class="tag">Node.js</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">Portfolio Website</div>
+                        <div class="project-badge">LIVE</div>
+                    </div>
+                    <div class="project-status">Completed</div>
+                    <p class="project-desc">Personal portfolio website designed and developed from scratch. Features a brutalist design aesthetic with interactive elements, smooth animations, and fully responsive layout. Serves as a showcase of design and development skills.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">Design</span>
+                        <span class="tag">Responsive</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">ML Research</div>
+                        <div class="project-badge">ONGOING</div>
+                    </div>
+                    <div class="project-status">Research Phase</div>
+                    <p class="project-desc">Exploring novel approaches in machine learning for real-world applications. Focused on building practical solutions using modern ML frameworks and techniques. Collaborating with peers on cutting-edge research.</p>
+                    <div class="project-tags">
+                        <span class="tag">TensorFlow</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">ML</span>
+                        <span class="tag">Research</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCES SECTION -->
+    <section id="experiences">
+        <div class="section-label">04 — Experiences</div>
+        <div class="section-number">04</div>
+        <div class="section-content">
+            <div class="experience-item">
+                <div class="exp-title">ML@KIT Member</div>
+                <div class="exp-company">KIT's Machine Learning Lab</div>
+                <div class="exp-date">2025 - Present</div>
+                <div class="exp-desc">Contributing to machine learning projects and research initiatives. Collaborating with senior members to explore AI applications and work on cutting-edge problems in ML and deep learning.</div>
+            </div>
+
+            <div class="experience-item">
+                <div class="exp-title">Open Source Contributor</div>
+                <div class="exp-company">Various Projects</div>
+                <div class="exp-date">2024 - Present</div>
+                <div class="exp-desc">Contributing to open-source projects and building tools for the developer community. Focus on creating helpful, well-documented code and solving real problems for users.</div>
+            </div>
+
+            <div class="experience-item">
+                <div class="exp-title">Student Organizer</div>
+                <div class="exp-company">Tech Events & Workshops</div>
+                <div class="exp-date">2025</div>
+                <div class="exp-desc">Organizing and facilitating technical workshops and events for college community. Working to foster interest in AI/ML and software development among peers.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education">
+        <div class="section-label">05 — Education</div>
+        <div class="section-number">05</div>
+        <div class="section-content">
+            <div class="education-item">
+                <div class="edu-title">B.Tech Computer Science</div>
+                <div class="edu-school">KIT Bangalore</div>
+                <div class="edu-year">2024 - 2028</div>
+                <div class="edu-desc">First-year student specializing in Artificial Intelligence & Machine Learning with core focus on fundamentals and practical applications.</div>
+            </div>
+
+            <div class="education-item">
+                <div class="edu-title">High School Diploma</div>
+                <div class="edu-school">Sarala School, Bangalore</div>
+                <div class="edu-year">Graduated 2024</div>
+                <div class="edu-desc">Strong foundation in science and mathematics. Active in co-curricular activities with focus on technical competitions.</div>
+            </div>
+
+            <div class="education-item">
+                <div class="edu-title">Self-Learning & Certifications</div>
+                <div class="edu-school">Online Platforms</div>
+                <div class="edu-year">Ongoing</div>
+                <div class="edu-desc">Continuous learning through online courses and certifications in ML, AI, web development, and system design from industry-leading platforms.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <div class="section-label">06 — Contact</div>
+        <div class="section-number">06</div>
+        <div class="contact-content">
+            <p class="contact-intro">I'm always open to interesting conversations and new opportunities. Feel free to reach out or connect with me on social platforms.</p>
+            <div class="contact-links">
+                <a href="mailto:adarsh.patil@example.com" class="contact-link">Get in Touch</a>
+            </div>
+            <div class="contact-socials">
+                <a href="https://github.com/adarshpatil1209" class="social-link">GitHub</a>
+                <a href="https://linkedin.com" class="social-link">LinkedIn</a>
+                <a href="https://twitter.com" class="social-link">Twitter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 Adarsh Patil. Designed & Built from Scratch. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .experience-item, .education-item, .skill-pill').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Interactive skill pills - add click event
+        document.querySelectorAll('.skill-pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                this.style.transform = 'rotate(2deg) scale(1.1)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 300);
+            });
+        });
+
+        // Navbar scroll effect (if needed in future)
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            lastScrollTop = window.scrollY;
+        });
+    </script>
+</body>
+</html>
